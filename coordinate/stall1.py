@@ -137,13 +137,13 @@ str2 = [
 M = {
     "model1": [
         # 长
-        9,
+        16.5,
         # 宽
-        5
+        8.1
     ],
     "model2": [
-        7,
-        5
+        16.5,
+        5.6
     ]
 }
 # 排布开始位置 左下:leftDown 左上:leftUp 右上:rightUp 右下:rightDown
