@@ -311,31 +311,57 @@ def model3(model_list):
     # 上方三个模块坐标
     stall_x = model_list[1][0] + left_column
     stall_y = model_list[1][1]
-
-    # 上方一个车位
     stall_0 = []
+    # 左下 减去车长
+    stall_left_down_x_0 = stall_x
+    stall_left_down_y_0 = stall_y - car_width
+    stall_left_down_0 = [stall_left_down_x_0, stall_left_down_y_0]
+    stall_0.append(stall_left_down_0)
+    # 左上
+    stall_left_up_x_0 = stall_x
+    stall_left_up_y_0 = stall_y
+    stall_left_up_0 = [stall_left_up_x_0, stall_left_up_y_0]
+    stall_0.append(stall_left_up_0)
+    # 右上 加上车宽
+    stall_right_up_x_0 = stall_x + car_length
+    stall_right_up_y_0 = stall_y
+    stall_right_up_0 = [stall_right_up_x_0, stall_right_up_y_0]
+    stall_0.append(stall_right_up_0)
+    # 右下 左下的y 右上的x
+    stall_right_down_x_0 = stall_x + car_length
+    stall_right_down_y_0 = stall_y - car_width
+    stall_right_down_0 = [stall_right_down_x_0, stall_right_down_y_0]
+    stall_0.append(stall_right_down_0)
+
+    # 下方一个车位
+    stall_3 = []
     stall_down_x = model_list[0][0] + left_column
     stall_down_y = model_list[0][1]
     # 左下 y加车宽
     stall_left_down_x_3 = stall_down_x
     stall_left_down_y_3 = stall_down_y
     stall_left_down_3 = [stall_left_down_x_3, stall_left_down_y_3]
-    stall_0.append(stall_left_down_3)
+    stall_3.append(stall_left_down_3)
     # 左上
     stall_left_up_x_3 = stall_down_x
     stall_left_up_y_3 = stall_down_y + car_width
     stall_left_up_3 = [stall_left_up_x_3, stall_left_up_y_3]
-    stall_0.append(stall_left_up_3)
+    stall_3.append(stall_left_up_3)
     # 右上
     stall_right_up_x_3 = stall_down_x + car_length
     stall_right_up_y_3 = stall_down_y + car_width
     stall_right_up_3 = [stall_right_up_x_3, stall_right_up_y_3]
-    stall_0.append(stall_right_up_3)
+    stall_3.append(stall_right_up_3)
     # 右下
     stall_right_down_x_3 = stall_down_x + car_length
     stall_right_down_y_3 = stall_down_y
     stall_right_down_3 = [stall_right_down_x_3, stall_right_down_y_3]
-    stall_0.append(stall_right_down_3)
+    stall_3.append(stall_right_down_3)
+    stall.append(stall_0)
+    stall.append(stall_3)
+    model_1["stall"] = stall
+    model_1["lane"] = lane(model_list)
+    return model_1
 
 
 def model4(model_list):
@@ -528,7 +554,268 @@ def model5(model_list):
 
 
 def model6(model_list):
-    print()
+    model_1 = {}
+    stall = []
+    # 上方三个模块坐标
+    stall_x = model_list[1][0] + left_column
+    stall_y = model_list[1][1]
+
+    stall_0 = []
+    # 左下 减去车长
+    stall_left_down_x_0 = stall_x
+    stall_left_down_y_0 = stall_y - car_length
+    stall_left_down_0 = [stall_left_down_x_0, stall_left_down_y_0]
+    stall_0.append(stall_left_down_0)
+    # 左上
+    stall_left_up_x_0 = stall_x
+    stall_left_up_y_0 = stall_y
+    stall_left_up_0 = [stall_left_up_x_0, stall_left_up_y_0]
+    stall_0.append(stall_left_up_0)
+    # 右上 加上车宽
+    stall_right_up_x_0 = stall_x + car_width
+    stall_right_up_y_0 = stall_y
+    stall_right_up_0 = [stall_right_up_x_0, stall_right_up_y_0]
+    stall_0.append(stall_right_up_0)
+    # 右下 左下的y 右上的x
+    stall_right_down_x_0 = stall_x + car_width
+    stall_right_down_y_0 = stall_y - car_length
+    stall_right_down_0 = [stall_right_down_x_0, stall_right_down_y_0]
+    stall_0.append(stall_right_down_0)
+    # 第二个车位
+    # 左下 上一个右下的坐标
+    stall_1 = []
+    stall_left_down_x_1 = stall_x + car_width
+    stall_left_down_y_1 = stall_y - car_length
+    stall_left_down_1 = [stall_left_down_x_1, stall_left_down_y_1]
+    stall_1.append(stall_left_down_1)
+    # 左上 上一个右上的坐标
+    stall_left_up_x_1 = stall_x + car_width
+    stall_left_up_y_1 = stall_y
+    stall_left_up_1 = [stall_left_up_x_1, stall_left_up_y_1]
+    stall_1.append(stall_left_up_1)
+    # 右上 x加两个车宽
+    stall_right_up_x_1 = stall_x + 2 * car_width
+    stall_right_up_y_1 = stall_y
+    stall_right_up_1 = [stall_right_up_x_1, stall_right_up_y_1]
+    stall_1.append(stall_right_up_1)
+    # 右下 左下的y 右上的x
+    stall_right_down_x_1 = stall_x + 2 * car_width
+    stall_right_down_y_1 = stall_y - car_length
+    stall_right_down_1 = [stall_right_down_x_1, stall_right_down_y_1]
+    stall_1.append(stall_right_down_1)
+
+    stall_3 = []
+    stall_down_x = model_list[0][0] + left_column
+    stall_down_y = model_list[0][1]
+    # 左下 y加车宽
+    stall_left_down_x_3 = stall_down_x
+    stall_left_down_y_3 = stall_down_y
+    stall_left_down_3 = [stall_left_down_x_3, stall_left_down_y_3]
+    stall_3.append(stall_left_down_3)
+    # 左上
+    stall_left_up_x_3 = stall_down_x
+    stall_left_up_y_3 = stall_down_y + car_width
+    stall_left_up_3 = [stall_left_up_x_3, stall_left_up_y_3]
+    stall_3.append(stall_left_up_3)
+    # 右上
+    stall_right_up_x_3 = stall_down_x + car_length
+    stall_right_up_y_3 = stall_down_y + car_width
+    stall_right_up_3 = [stall_right_up_x_3, stall_right_up_y_3]
+    stall_3.append(stall_right_up_3)
+    # 右下
+    stall_right_down_x_3 = stall_down_x + car_length
+    stall_right_down_y_3 = stall_down_y
+    stall_right_down_3 = [stall_right_down_x_3, stall_right_down_y_3]
+    stall_3.append(stall_right_down_3)
+
+    stall.append(stall_0)
+    stall.append(stall_1)
+    stall.append(stall_3)
+    model_1["stall"] = stall
+    model_1["lane"] = lane(model_list)
+    return model_1
 
 
-print(model4(model))
+def model7(model_list):
+    model_1 = {}
+    stall = []
+    # 上方三个模块坐标
+    stall_x = model_list[1][0] + left_column
+    stall_y = model_list[1][1]
+
+    stall_0 = []
+    # 左下 减去车长
+    stall_left_down_x_0 = stall_x
+    stall_left_down_y_0 = stall_y - car_length
+    stall_left_down_0 = [stall_left_down_x_0, stall_left_down_y_0]
+    stall_0.append(stall_left_down_0)
+    # 左上
+    stall_left_up_x_0 = stall_x
+    stall_left_up_y_0 = stall_y
+    stall_left_up_0 = [stall_left_up_x_0, stall_left_up_y_0]
+    stall_0.append(stall_left_up_0)
+    # 右上 加上车宽
+    stall_right_up_x_0 = stall_x + car_width
+    stall_right_up_y_0 = stall_y
+    stall_right_up_0 = [stall_right_up_x_0, stall_right_up_y_0]
+    stall_0.append(stall_right_up_0)
+    # 右下 左下的y 右上的x
+    stall_right_down_x_0 = stall_x + car_width
+    stall_right_down_y_0 = stall_y - car_length
+    stall_right_down_0 = [stall_right_down_x_0, stall_right_down_y_0]
+    stall_0.append(stall_right_down_0)
+    # 模块1下方的车位
+    stall_down_x = model_list[0][0] + left_column
+    stall_down_y = model_list[0][1]
+    stall_3 = []
+    # 左下
+    stall_left_down_x_3 = stall_down_x
+    stall_left_down_y_3 = stall_down_y
+    stall_left_down_3 = [stall_left_down_x_3, stall_left_down_y_3]
+    stall_3.append(stall_left_down_3)
+    # 左上
+    stall_left_up_x_3 = stall_down_x
+    stall_left_up_y_3 = stall_down_y + car_length
+    stall_left_up_3 = [stall_left_up_x_3, stall_left_up_y_3]
+    stall_3.append(stall_left_up_3)
+    # 右上
+    stall_right_up_x_3 = stall_down_x + car_width
+    stall_right_up_y_3 = stall_down_y + car_length
+    stall_right_up_3 = [stall_right_up_x_3, stall_right_up_y_3]
+    stall_3.append(stall_right_up_3)
+    # 右下
+    stall_right_down_x_3 = stall_down_x + car_width
+    stall_right_down_y_3 = stall_down_y
+    stall_right_down_3 = [stall_right_down_x_3, stall_right_down_y_3]
+    stall_3.append(stall_right_down_3)
+    stall.append(stall_0)
+    stall.append(stall_3)
+    model_1["stall"] = stall
+    model_1["lane"] = lane(model_list)
+    return model_1
+
+
+def model8(model_list):
+    model_1 = {}
+    stall = []
+    # 上方三个模块坐标
+    stall_x = model_list[1][0] + left_column
+    stall_y = model_list[1][1]
+
+    stall_0 = []
+    # 左下 减去车长
+    stall_left_down_x_0 = stall_x
+    stall_left_down_y_0 = stall_y - car_length
+    stall_left_down_0 = [stall_left_down_x_0, stall_left_down_y_0]
+    stall_0.append(stall_left_down_0)
+    # 左上
+    stall_left_up_x_0 = stall_x
+    stall_left_up_y_0 = stall_y
+    stall_left_up_0 = [stall_left_up_x_0, stall_left_up_y_0]
+    stall_0.append(stall_left_up_0)
+    # 右上 加上车宽
+    stall_right_up_x_0 = stall_x + car_width
+    stall_right_up_y_0 = stall_y
+    stall_right_up_0 = [stall_right_up_x_0, stall_right_up_y_0]
+    stall_0.append(stall_right_up_0)
+    # 右下 左下的y 右上的x
+    stall_right_down_x_0 = stall_x + car_width
+    stall_right_down_y_0 = stall_y - car_length
+    stall_right_down_0 = [stall_right_down_x_0, stall_right_down_y_0]
+    stall_0.append(stall_right_down_0)
+    # 第二个车位
+    # 左下 上一个右下的坐标
+    stall_1 = []
+    stall_left_down_x_1 = stall_x + car_width
+    stall_left_down_y_1 = stall_y - car_length
+    stall_left_down_1 = [stall_left_down_x_1, stall_left_down_y_1]
+    stall_1.append(stall_left_down_1)
+    # 左上 上一个右上的坐标
+    stall_left_up_x_1 = stall_x + car_width
+    stall_left_up_y_1 = stall_y
+    stall_left_up_1 = [stall_left_up_x_1, stall_left_up_y_1]
+    stall_1.append(stall_left_up_1)
+    # 右上 x加两个车宽
+    stall_right_up_x_1 = stall_x + 2 * car_width
+    stall_right_up_y_1 = stall_y
+    stall_right_up_1 = [stall_right_up_x_1, stall_right_up_y_1]
+    stall_1.append(stall_right_up_1)
+    # 右下 左下的y 右上的x
+    stall_right_down_x_1 = stall_x + 2 * car_width
+    stall_right_down_y_1 = stall_y - car_length
+    stall_right_down_1 = [stall_right_down_x_1, stall_right_down_y_1]
+    stall_1.append(stall_right_down_1)
+    stall.append(stall_0)
+    stall.append(stall_1)
+    model_1["stall"] = stall
+    return model_1
+
+
+def model9(model_list):
+    model_1 = {}
+    stall = []
+    # 上方三个模块坐标
+    stall_x = model_list[1][0] + left_column
+    stall_y = model_list[1][1]
+
+    stall_0 = []
+    # 左下 减去车长
+    stall_left_down_x_0 = stall_x
+    stall_left_down_y_0 = stall_y - car_length
+    stall_left_down_0 = [stall_left_down_x_0, stall_left_down_y_0]
+    stall_0.append(stall_left_down_0)
+    # 左上
+    stall_left_up_x_0 = stall_x
+    stall_left_up_y_0 = stall_y
+    stall_left_up_0 = [stall_left_up_x_0, stall_left_up_y_0]
+    stall_0.append(stall_left_up_0)
+    # 右上 加上车宽
+    stall_right_up_x_0 = stall_x + car_width
+    stall_right_up_y_0 = stall_y
+    stall_right_up_0 = [stall_right_up_x_0, stall_right_up_y_0]
+    stall_0.append(stall_right_up_0)
+    # 右下 左下的y 右上的x
+    stall_right_down_x_0 = stall_x + car_width
+    stall_right_down_y_0 = stall_y - car_length
+    stall_right_down_0 = [stall_right_down_x_0, stall_right_down_y_0]
+    stall_0.append(stall_right_down_0)
+    stall.append(stall_0)
+    model_1["stall"] = stall
+    model_1["lane"] = lane(model_list)
+    return model_1
+
+
+def model10(model_list):
+    model_1 = {}
+    stall = []
+    # 上方三个模块坐标
+    stall_x = model_list[1][0] + left_column
+    stall_y = model_list[1][1]
+    stall_0 = []
+    # 左下 减去车长
+    stall_left_down_x_0 = stall_x
+    stall_left_down_y_0 = stall_y - car_width
+    stall_left_down_0 = [stall_left_down_x_0, stall_left_down_y_0]
+    stall_0.append(stall_left_down_0)
+    # 左上
+    stall_left_up_x_0 = stall_x
+    stall_left_up_y_0 = stall_y
+    stall_left_up_0 = [stall_left_up_x_0, stall_left_up_y_0]
+    stall_0.append(stall_left_up_0)
+    # 右上 加上车宽
+    stall_right_up_x_0 = stall_x + car_length
+    stall_right_up_y_0 = stall_y
+    stall_right_up_0 = [stall_right_up_x_0, stall_right_up_y_0]
+    stall_0.append(stall_right_up_0)
+    # 右下 左下的y 右上的x
+    stall_right_down_x_0 = stall_x + car_length
+    stall_right_down_y_0 = stall_y - car_width
+    stall_right_down_0 = [stall_right_down_x_0, stall_right_down_y_0]
+    stall_0.append(stall_right_down_0)
+    stall.append(stall_0)
+    model_1["stall"] = stall
+    model_1["lane"] = lane(model_list)
+    return model_1
+
+
+print(model10(model))
